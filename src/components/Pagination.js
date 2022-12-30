@@ -14,6 +14,8 @@ export default function Pagination() {
       ? totalRecord
       : pageLimit * currentPage;
 
+  const numPage = Math.ceil(totalRecord / pageLimit);
+
   return (
     <div className="d-flex justify-content-between">
       <div className="d-flex align-items-center gap-2">
@@ -46,21 +48,13 @@ export default function Pagination() {
               <span>&laquo;</span>
             </a>
           </li>
-          <li className="page-item active">
-            <a href="/" className="page-link">
-              <span>1</span>
-            </a>
-          </li>
-          <li className="page-item">
-            <a href="/" className="page-link">
-              <span>2</span>
-            </a>
-          </li>
-          <li className="page-item">
-            <a href="/" className="page-link">
-              <span>3</span>
-            </a>
-          </li>
+          {new Array(numPage).fill().map((el, idx) => (
+            <li className="page-item">
+              <a href="/" className="page-link">
+                <span>{idx + 1}</span>
+              </a>
+            </li>
+          ))}
           <li className="page-item">
             <a href="/" className="page-link">
               <span>&raquo;</span>
