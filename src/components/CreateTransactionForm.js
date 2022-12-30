@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import axios from '../config/axios';
+import { useTransaction } from '../contexts/TransactionContext';
 import Input from './Input';
 import RadioButton from './RadioButton';
 import Select from './Select';
 
 export default function CreateTransactionForm({ onClose }) {
+  const { createTransaction } = useTransaction();
+
   const [input, setInput] = useState({
     type: 'EXPENSE',
     payee: '',
@@ -56,9 +59,16 @@ export default function CreateTransactionForm({ onClose }) {
     setInput(newInput);
   };
 
+  const hnadleSubmitForm = e => {
+    e.preventDefault();
+    // validate input
+    // check error and setError
+    // no error createTransaction
+  };
+
   return (
     <div className="bg-white p-3 rounded-2">
-      <form>
+      <form onSubmit={hnadleSubmitForm}>
         <div className="row g-3">
           <div className="col-12">
             <RadioButton
